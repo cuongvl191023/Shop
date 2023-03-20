@@ -1,0 +1,106 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ShopOnline</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ShopOnline.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Shared/_Layout.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div id="body">
+        <div id="header">
+            <div id="logo">
+                I SAW IT FIRST
+            </div>
+            <div id="menu">
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index" class="text-black text-decoration-none"><span>Khám
+                                phá</span></a></li>
+                    <li><a asp-controller="Home" asp-action="Index" class="text-black text-decoration-none"><span>Sản
+                                phẩm</span></a></li>
+                    <li><a asp-controller="Home" asp-action="Index" class="text-black text-decoration-none"><span>Cửa
+                                hàng</span></a></li>
+                    <li><a asp-controller="Home" asp-action="Index" class="text-black text-decoration-none"><span>Liên
+                                hệ</span></a></li>
+                    <li><a asp-controller="Home" asp-action="Index" class="text-black text-decoration-none"><span>Trợ
+                                giúp</span></a></li>
+                </ul>
+            </div>
+            <div id="account-button">
+                @if (SignInManager.IsSignedIn(this.User))
+                {
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index"><button>Xin chào &gt;&lt;</button></a>
+                    <a asp-area="Identity" asp-page="/Account/Logout"><button>Đăng xuất</button></a>
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Login"><button>Đăng nhập</button></a>
+                    <a asp-area="Identity" asp-page="/Account/Register"><button>Đăng kí</button></a>
+                }
+            </div>
+            <div id="header-hide">
+                <button>Menu
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index"
+                                class="text-dark text-decoration-none"><span>Khám
+                                    phá</span></a></li>
+                        <li><a asp-controller="Home" asp-action="Index" class="text-dark text-decoration-none"><span>Sản
+                                    phẩm</span></a></li>
+                        <li><a asp-controller="Home" asp-action="Index" class="text-dark text-decoration-none"><span>Cửa
+                                    hàng</span></a></li>
+                        <li><a asp-controller="Home" asp-action="Index"
+                                class="text-dark text-decoration-none"><span>Liên
+                                    hệ</span></a></li>
+                        <li><a asp-controller="Home" asp-action="Index" class="text-dark text-decoration-none"><span>Trợ
+                                    giúp</span></a></li>
+                        @if (SignInManager.IsSignedIn(this.User))
+                        {
+                            <li><a asp-area="Identity" asp-page="/Account/Login"
+                                    class="text-dark text-decoration-none"><span>Xin chào &gt;&lt;</span></a></li>
+                            <li><a asp-area="Identity" asp-page="/Account/Logout"
+                                    class="text-dark text-decoration-none"><span>Đăng xuất</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-area="Identity" asp-page="/Account/Manage/Index"
+                                    class="text-dark text-decoration-none"><span>Đăng
+                                        nhập</span></a></li>
+                            <li><a asp-area="Identity" asp-page="/Account/Register"
+                                    class="text-dark text-decoration-none"><span>Đăng
+                                        kí</span></a></li>
+                        }
+                    </ul>
+                </button>
+            </div>
+        </div>
+
+        <div id="banner">
+            <img src="~/img/vecteezy_online-shopping-on-phone-buy-sell-business-digital-web_4299835.jpg" width="100%"
+                style="border-radius: 20px">
+        </div>
+
+        <main>
+            @RenderBody()
+        </main>
+
+        <footer>
+
+        </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
